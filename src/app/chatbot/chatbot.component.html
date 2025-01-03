@@ -1,0 +1,28 @@
+<div class="chat-widget" *ngIf="isChatOpen">
+    <div class="chat-header" (click)="toggleChat()">
+      <h4>Ask about her Education, Experience and Skills</h4>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-message" *ngFor="let message of messages">
+        <div [class]="message.user ? 'user-message' : 'bot-message'">
+          {{ message.text }}
+        </div>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <input
+        type="text"
+        [(ngModel)]="userMessage"
+        placeholder="Type your message..."
+        (keydown.enter)="sendMessage()"
+      />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+  
+  <!-- Chat Launcher -->
+  <div class="chat-launcher" *ngIf="!isChatOpen" (click)="toggleChat()">
+    Know More about Jellybean
+  </div>
+  
